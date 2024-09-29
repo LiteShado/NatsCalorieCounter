@@ -26,13 +26,24 @@ function isInvalidInput(str) {
 }
 
 function addEntry() {
-    const targetId = '#' + entryDropdown.value;
-    const targetInputContainer = document.querySelector(`#${entryDropdown} .input-container`);
+    //<select> name attribute is set to "options". the <option> element has a value attribute that will switch based on user's choice. value of #entryDropdown will be based on user's option choice.
+
+    const targetId = '#' + entryDropdown.value; //this line adds the "#" to whatever option the user chooses between breakfast,lunch,dinner, snacks,and exercise.
+
+    const targetInputContainer = document.querySelector(`#${entryDropdown} .input-container`); //this line adds "#" to the food/exercise that the user types in the fieldsets.
+
     const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length;
-    console.log(entryNumber);
+    //this line will calculate how many entries have been added by the user so far
+        
     const HTMLString = ` 
     <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
     <input type="text" placeholder="Name" id="${entryDropdown.value}-${entryNumber}-name">
     <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
     <input type="number" min="0" placeholder="Calories" id="${entryDropdown.value}-${entryNumber}-calories">`;
-  }
+
+    //this is the dynamic code that will update as the user populates the information.
+
+
+    targetInputContainer.innerHTML += HTMLString; //this code appends a new label and input element into the form. 
+
+  } 
