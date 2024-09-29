@@ -32,7 +32,7 @@ function addEntry() {
 
     const targetInputContainer = document.querySelector(`#${entryDropdown} .input-container`); //this line adds "#" to the food/exercise that the user types in the fieldsets.
 
-    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length;
+    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length + 1; //prevents the count from starting 0, instead of 1, like it's supposed to.
     //this line will calculate how many entries have been added by the user so far
         
     const HTMLString = ` 
@@ -44,6 +44,24 @@ function addEntry() {
     //this is the dynamic code that will update as the user populates the information.
 
 
-    targetInputContainer.innerHTML += HTMLString; //this code appends a new label and input element into the form. 
-
+    targetInputContainer.insertAdjacentHTML('beforeend', HTMLString); //this code appends a new label and input element into the form. 
   } 
+
+  addEntryButton.addEventListener('click', addEntry);
+
+  function getCaloriesFromInputs(list) {
+    let calories = 0;
+    for (const item of list) { //this loop will iterate thru the NodeList that will be returned once we pull the entries.
+      const currVal = cleanInputString(item.value);
+      const invalidInputMatch = isInvalidInput(currVal)
+      //both of this variables are created to "clean" the user's input before we start utilizing for calculation. invalidInputMatch will contain the elements that are unnecessary by the user.
+      if (invalidInputMatch) {
+        alert(`Invalid Input: ${invalidInputMatch[0]}`);
+        isError = true;
+      return null;
+
+      }
+
+    }
+  
+  }
