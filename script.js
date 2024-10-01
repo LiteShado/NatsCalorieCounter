@@ -58,10 +58,14 @@ function addEntry() {
       if (invalidInputMatch) {
         alert(`Invalid Input: ${invalidInputMatch[0]}`);
         isError = true;
-      return null;
-
-      }
+        return null;
+      } 
+    }
+        calories += Number(currVal); //the Number function converts a value to a number
+        return calories;
+      
 
     }
-  
-  }
+    function calculateCalories(e) {
+
+    }
