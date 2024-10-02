@@ -67,5 +67,13 @@ function addEntry() {
 
     }
     function calculateCalories(e) {
+      e.preventDefault(); // this prevents the page from resetting after it submits
+      isError = false; //resets the global error flag to false
+      const breakfastNumberInputs = document.querySelectorAll('#breakfast input[type=number]');
+      const lunchNumberInputs = document.querySelectorAll("#lunch input[type='number']");
+      const dinnerNumberInputs = document.querySelectorAll("#dinner input[type='number']");
+      const snacksNumberInputs = document.querySelectorAll("#snacks input[type='number']");
+      const exerciseNumberInputs = document.querySelectorAll("#exercise input[type='number']");
+
 
     }
