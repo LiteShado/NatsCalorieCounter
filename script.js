@@ -49,23 +49,7 @@ function addEntry() {
 
   addEntryButton.addEventListener('click', addEntry);
 
-  function getCaloriesFromInputs(list) {
-    let calories = 0;
-    for (const item of list) { //this loop will iterate thru the NodeList that will be returned once we pull the entries.
-      const currVal = cleanInputString(item.value);
-      const invalidInputMatch = isInvalidInput(currVal)
-      //both of this variables are created to "clean" the user's input before we start utilizing for calculation. invalidInputMatch will contain the elements that are unnecessary by the user.
-      if (invalidInputMatch) {
-        alert(`Invalid Input: ${invalidInputMatch[0]}`);
-        isError = true;
-        return null;
-      } 
-    }
-        calories += Number(currVal); //the Number function converts a value to a number
-        return calories;
-      
 
-    }
     function calculateCalories(e) {
       e.preventDefault(); // this prevents the page from resetting after it submits
       isError = false; //resets the global error flag to false
@@ -92,18 +76,36 @@ function addEntry() {
 
       output.innerHTML = `<span class="${surplusOrDeficit.toLowerCase()}">${Math.abs(remainingCalories)} Calorie ${surplusOrDeficit}</span>
       
-      <hr></hr>
+      <hr>
+
       <p>${budgetCalories} Calories Budgeted</p>
       <p>${consumedCalories} Calories Consumed</p>
       <p>${exerciseCalories} Calories Burned</p>
-      
-      output.classList.remove('hide');
+  
       `;
-
-
-
+      output.classList.remove('hide');
+      }
+      function getCaloriesFromInputs(list) {
+    let calories = 0;
+    for (const item of list) { //this loop will iterate thru the NodeList that will be returned once we pull the entries.
+      const currVal = cleanInputString(item.value);
+      const invalidInputMatch = isInvalidInput(currVal)
+      //both of this variables are created to "clean" the user's input before we start utilizing for calculation. invalidInputMatch will contain the elements that are unnecessary by the user.
+      if (invalidInputMatch) {
+        alert(`Invalid Input: ${invalidInputMatch[0]}`);
+        isError = true;
+        return null;
+      } 
+      calories += Number(currVal); //the Number function converts a value to a number
     }
-  } 
+        return calories;
+      
+  }
+addEntryButton.addEventListener("click", addEntry);
+calorieCounter.addEventListener('submit', calculateCalories);
 
+function clearForm() {
+  const inputContainers = Array.from(document.querySelectorAll('.input-container')); //returns a array from the original NodeList that comes back from the elemental return of '.input-container'
 }
+
 
